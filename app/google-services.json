@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "892817069014",
+    "firebase_url": "https://mlkit-kackweek.firebaseio.com",
+    "project_id": "mlkit-kackweek",
+    "storage_bucket": "mlkit-kackweek.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892817069014:android:c9e23a735902a3356dca77",
+        "android_client_info": {
+          "package_name": "com.uoc.mlkit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892817069014-j80i3ghal58l2b5jn8br0jaktpea9m9b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uoc.mlkit",
+            "certificate_hash": "f4669c190d835ed44c62c7cce2b5f1a8e545a432"
+          }
+        },
+        {
+          "client_id": "892817069014-8cva1u1ejf6vsp4chqjeqom1gtq0ddbf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8AH93cWTI-le05ui71qaylHozk6d4ml8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892817069014-8cva1u1ejf6vsp4chqjeqom1gtq0ddbf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

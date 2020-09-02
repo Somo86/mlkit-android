@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">mlkit</string>
+    <string name="capture_image">capture image</string>
 </resources>
