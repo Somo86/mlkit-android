@@ -5,12 +5,13 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.DetectedObject
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions
-import com.uoc.mlkit.services.ImageAnalyzer
+import com.uoc.mlkit.model.services.ImageAnalyzer
 import io.reactivex.subjects.PublishSubject
 
 class CloudObjectTrack : ImageAnalyzer(), ImageAnalyzer.ImageAnalyzerContract {
 
     val labelSubscription = PublishSubject.create<List<DetectedObject>>()
+
     val options = ObjectDetectorOptions.Builder()
         .setDetectorMode(ObjectDetectorOptions.STREAM_MODE)
         .enableClassification()  // Optional

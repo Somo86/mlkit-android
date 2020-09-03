@@ -1,11 +1,12 @@
 package com.uoc.mlkit.model.mlkit
 
+import java.util.concurrent.TimeUnit
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabel
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
-import com.uoc.mlkit.services.ImageAnalyzer
+import com.uoc.mlkit.model.services.ImageAnalyzer
 import io.reactivex.subjects.PublishSubject
 
 class CloudImageLabeler(
@@ -13,30 +14,30 @@ class CloudImageLabeler(
 ): ImageAnalyzer(), ImageAnalyzer.ImageAnalyzerContract {
     private val defaultOptions = ImageLabelerOptions.DEFAULT_OPTIONS
     private var options: ImageLabelerOptions
-    private val labelSubscription = PublishSubject.create<List<ImageLabel>>()
+    val labelSubscription = PublishSubject.create<List<ImageLabel>>()
 
-    private lateinit var inputImage: InputImage
-    private lateinit var imageProxy: ImageProxy
-
+    var lastAnalizedTimestamp = 0.toLong()
 
     init {
         options = initOptions ?: defaultOptions
     }
 
     override fun imageProcessor(image: InputImage, imageProxy: ImageProxy) {
-        inputImage = image
-        this.imageProxy = imageProxy
-    }
-
-    open fun getData(): PublishSubject<List<ImageLabel>> {
         val labeler = ImageLabeling.getClient(options)
+        val currentTimestamp = System.currentTimeMillis()
 
-        labeler.process(inputImage)
-            .addOnSuccessListener { labels -> labelSubscription.onNext(labels) }
-            .addOnFailureListener { e ->  labelSubscription.onError(e) }
-            .addOnCanceledListener { imageProxy.close() }
-
-
-        return labelSubscription
+        if(currentTimestamp - lastAnalizedTimestamp >= TimeUnit.SECONDS.toMillis(2)) {
+            lastAnalizedTimestamp = currentTimestamp
+            labeler.process(image)
+                .addOnSuccessListener { labels -> labelSubscription.onNext(labels) }
+                .addOnFailureListener { e ->  labelSubscription.onError(e) }
+                .addOnCompleteListener {
+                    imageProxy.close()
+                }
+        } else {
+            imageProxy.close()
+        }
     }
+
+
 }

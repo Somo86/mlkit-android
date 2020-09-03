@@ -10,12 +10,11 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import com.google.common.util.concurrent.ListenableFuture
 import java.util.concurrent.Executors
 
 
 class CameraKit(
-    private val viewFinder: PreviewView,
+    private val viewFinder: PreviewView?,
     private val CustomImageAnalyzer: ImageAnalysis.Analyzer,
     private val context: Context
 ) {
@@ -36,7 +35,7 @@ class CameraKit(
     private val imageCapture = buildImageCapture()
 
 
-    fun onStartPreview() {
+    fun onStart() {
         cameraProviderFuture.addListener(Runnable {
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -57,10 +56,11 @@ class CameraKit(
     }
 
     private fun buildPreview(): Preview {
+
         return Preview.Builder()
             .build()
             .also {
-                it.setSurfaceProvider(viewFinder.createSurfaceProvider())
+                it.setSurfaceProvider(viewFinder?.createSurfaceProvider())
             }
     }
 
@@ -68,17 +68,6 @@ class CameraKit(
         return ImageCapture.Builder()
             .setTargetRotation(rotation)
             .build()
-    }
-
-    fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-    }
-
-    fun onCaptureImage() {
-
     }
 
 }

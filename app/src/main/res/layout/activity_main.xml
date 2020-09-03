@@ -8,17 +8,18 @@
     tools:context=".view.MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <androidx.camera.view.PreviewView
-            android:id="@+id/cameraPreview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/info_text"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/detection_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="dfdsafdsafdsafd"/>
+            android:text="Track images"
+            />
+        <Button
+            android:id="@+id/labeling_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label images"
+            />
     </LinearLayout>
-
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.uoc.mlkit.services
+package com.uoc.mlkit.model.services
 
 import android.annotation.SuppressLint
 import androidx.camera.core.ImageAnalysis
