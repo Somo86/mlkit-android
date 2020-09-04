@@ -56,7 +56,6 @@ class CameraKit(
     }
 
     private fun buildPreview(): Preview {
-
         return Preview.Builder()
             .build()
             .also {

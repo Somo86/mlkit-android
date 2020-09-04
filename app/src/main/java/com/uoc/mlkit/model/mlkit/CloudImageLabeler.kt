@@ -1,5 +1,6 @@
 package com.uoc.mlkit.model.mlkit
 
+import android.annotation.SuppressLint
 import java.util.concurrent.TimeUnit
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
@@ -22,6 +23,7 @@ class CloudImageLabeler(
         options = initOptions ?: defaultOptions
     }
 
+    @SuppressLint("UnsafeExperimentalUsageError")
     override fun imageProcessor(image: InputImage, imageProxy: ImageProxy) {
         val labeler = ImageLabeling.getClient(options)
         val currentTimestamp = System.currentTimeMillis()

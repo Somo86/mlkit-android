@@ -1,18 +1,17 @@
 package com.uoc.mlkit.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import com.google.mlkit.vision.label.ImageLabel
-import com.google.mlkit.vision.objects.DetectedObject
 import com.uoc.mlkit.R
 import com.uoc.mlkit.model.mlkit.CloudImageLabeler
-import com.uoc.mlkit.model.mlkit.CloudObjectTrack
 import com.uoc.mlkit.model.services.ImageAnalyzer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+
 
 class ImageLabelingActivity : AppCompatActivity(), MainCameraActivity {
 
@@ -22,7 +21,7 @@ class ImageLabelingActivity : AppCompatActivity(), MainCameraActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_labeling)
 
-        analyzer = CloudImageLabeler()
+        analyzer = CloudImageLabeler(null)
     }
 
     override fun onStart() {
